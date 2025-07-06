@@ -93,3 +93,10 @@ class TestBooksCollector:
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, expected_genre)
         assert collector.get_book_genre(book_name) == expected_genre
+
+    def test_get_books_genre_after_adding_books(self, collector):
+        collector.add_new_book("Роботы")
+        collector.add_new_book("Дюна")
+        collector.set_book_genre("Дюна", "Ужасы")
+        expected = {"Роботы": "", "Дюна": "Ужасы"}
+        assert collector.get_books_genre() == expected
